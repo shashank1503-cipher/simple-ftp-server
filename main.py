@@ -28,6 +28,7 @@ async def upload_file(file: UploadFile = File(...)):
         content = await file.read()
         image.write(content)
         image.close()
+        chdir(getcwd() + "/..")
     return {"filename": file.filename,"url":"http://127.0.0.1:5500/file/"+file.filename}
 
 @app.get("/file/{name_file}")
@@ -48,8 +49,8 @@ def home():
     
     return routes
 
-# if __name__ == "__main__":
-#     uvicorn.run(app, host="0.0.0.0", port=5500)
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=5500)
 
 """
 Run this command to start the server:
